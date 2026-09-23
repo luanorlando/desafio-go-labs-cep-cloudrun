@@ -1,12 +1,19 @@
 package entity
 
-import "regexp"
+import (
+	"errors"
+	"regexp"
+)
 
 type Cep struct {
-	city string `json:"localidade"`
+	City string `json:"localidade"`
+	Erro string `json:"erro,omitempty"`
 }
 
 func ValidarCEP(cep string) bool {
 	re := regexp.MustCompile(`^\d{5}-?\d{3}$`)
 	return re.MatchString(cep)
 }
+
+var ErrCEPInvalid = errors.New("invalid zipcode")
+var ErrCEPNotFound = errors.New("can not find zipcode")
