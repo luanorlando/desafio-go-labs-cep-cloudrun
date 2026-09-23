@@ -1,0 +1,3 @@
+GET http://localhost:8080/cep/15290-291 HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json

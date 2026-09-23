@@ -1,4 +1,4 @@
-package webserver
+package handler
 
 import (
 	"encoding/json"
@@ -23,12 +23,12 @@ func NewHandler(u *usecase.FetchCEPUsecase) *CEPHandler {
 func (h *CEPHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	params := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
 
-	if len(params) != 1 || params[0] == "" {
+	if len(params) != 2 || params[0] == "" {
 		http.Error(w, "CEP não encontrado na url", http.StatusBadRequest)
 		return
 	}
 
-	cep := params[0]
+	cep := params[1]
 
 	result, err := h.usecase.Execute(cep)
 
