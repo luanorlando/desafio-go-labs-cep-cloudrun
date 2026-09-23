@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
-	"strings"
 
 	"github.com/luanorlando/desafio-go-labs-cep-cloudrun.git/internal/entity"
 	"github.com/luanorlando/desafio-go-labs-cep-cloudrun.git/internal/usecase"
@@ -21,14 +20,14 @@ func NewHandler(u *usecase.FetchCEPUsecase) *CEPHandler {
 }
 
 func (h *CEPHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	params := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
+	// params := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
 
-	if len(params) != 2 || params[0] == "" {
-		http.Error(w, "CEP não encontrado na url", http.StatusBadRequest)
-		return
-	}
+	// if len(params) != 2 || params[0] == "" {
+	// 	http.Error(w, "CEP não encontrado na url", http.StatusBadRequest)
+	// 	return
+	// }
 
-	cep := params[1]
+	cep := r.PathValue("cep")
 
 	result, err := h.usecase.Execute(cep)
 
