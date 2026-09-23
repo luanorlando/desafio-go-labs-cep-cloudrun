@@ -6,9 +6,9 @@ import (
 )
 
 type Weather struct {
-	Celsius    float32 `json:"temp_C"`
-	Fahrenheit float32 `json:"temp_F"`
-	Kelvin     float32 `json:"temp_k"`
+	Celsius    float64 `json:"temp_C"`
+	Fahrenheit float64 `json:"temp_F"`
+	Kelvin     float64 `json:"temp_k"`
 }
 
 type Cep struct {
@@ -21,8 +21,8 @@ type WeatherFromCity struct {
 }
 
 type CurrentWeather struct {
-	Celsius    float32 `json:"temp_c"`
-	Fahrenheit float32 `json:"temp_f"`
+	Celsius    float64 `json:"temp_c"`
+	Fahrenheit float64 `json:"temp_f"`
 }
 
 func ValidarCEP(cep string) bool {
@@ -30,9 +30,10 @@ func ValidarCEP(cep string) bool {
 	return re.MatchString(cep)
 }
 
-func KelvinBy(c float32) float32 {
+func KelvinBy(c float64) float64 {
 	return c + 273
 }
 
 var ErrCEPInvalid = errors.New("invalid zipcode")
 var ErrCEPNotFound = errors.New("can not find zipcode")
+var ErrWeatherFound = errors.New("can not find weather")

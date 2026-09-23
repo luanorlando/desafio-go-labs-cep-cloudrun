@@ -10,9 +10,13 @@ import (
 )
 
 func main() {
-	cepRepo := repository.NewViaCEPRepository()
-	fetchCEPUsecase := usecase.NewFetchWeatherUsecase(cepRepo)
-	cepHandler := handler.NewHandler(fetchCEPUsecase)
+
+	client := http.Client{}
+
+	cepRepo := repository.NewViaCEPRepository(&client)
+	weatherRepo := repository.NewExternalWeatherRepository("PEGAR APIKey", &client)
+	usecase := usecase.NewFetchWeatherUsecase(cepRepo, weatherRepo)
+	cepHandler := handler.NewHandler(usecase)
 
 	http.Handle("GET /weather/{cep}", cepHandler)
 

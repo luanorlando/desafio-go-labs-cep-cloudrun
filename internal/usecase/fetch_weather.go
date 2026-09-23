@@ -6,20 +6,42 @@ type CEPRepository interface {
 	Fetch(cep string) (*entity.Cep, error)
 }
 
-type FetchWeatherUsecase struct {
-	repository CEPRepository
+type WeatherRepository interface {
+	FetchBy(city string) (*entity.WeatherFromCity, error)
 }
 
-func NewFetchWeatherUsecase(r CEPRepository) *FetchWeatherUsecase {
+type FetchWeatherUsecase struct {
+	cepRepository     CEPRepository
+	weatherRepository WeatherRepository
+}
+
+func NewFetchWeatherUsecase(cr CEPRepository, wr WeatherRepository) *FetchWeatherUsecase {
 	return &FetchWeatherUsecase{
-		repository: r,
+		cepRepository:     cr,
+		weatherRepository: wr,
 	}
 }
 
-func (u FetchWeatherUsecase) Execute(cep string) (*entity.Cep, error) {
+func (u FetchWeatherUsecase) Execute(cep string) (*entity.Weather, error) {
 	if !entity.ValidarCEP(cep) {
 		return nil, entity.ErrCEPInvalid
 	}
 
-	return u.repository.Fetch(cep)
+	cResult, err := u.cepRepository.Fetch(cep)
+	if err != nil {
+		return nil, err
+	}
+
+	wResult, err := u.weatherRepository.FetchBy(cResult.City)
+	if err != nil {
+		return nil, err
+	}
+
+	kelvin := entity.KelvinBy(wResult.Current.Celsius)
+
+	return &entity.Weather{
+		Celsius:    wResult.Current.Celsius,
+		Fahrenheit: wResult.Current.Fahrenheit,
+		Kelvin:     kelvin,
+	}, nil
 }

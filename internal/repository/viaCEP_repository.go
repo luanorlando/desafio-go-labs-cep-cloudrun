@@ -8,16 +8,20 @@ import (
 	"github.com/luanorlando/desafio-go-labs-cep-cloudrun.git/internal/entity"
 )
 
-type ViaCEPRepository struct{}
+type ViaCEPRepository struct {
+	httpClient *http.Client
+}
 
-func NewViaCEPRepository() *ViaCEPRepository {
-	return &ViaCEPRepository{}
+func NewViaCEPRepository(client *http.Client) *ViaCEPRepository {
+	return &ViaCEPRepository{
+		httpClient: client,
+	}
 }
 
 func (r ViaCEPRepository) Fetch(cep string) (*entity.Cep, error) {
 	urlAPI := fmt.Sprintf("https://viacep.com.br/ws/%s/json", cep)
 
-	resp, err := http.Get(urlAPI)
+	resp, err := r.httpClient.Get(urlAPI)
 
 	if err != nil {
 		return nil, err
