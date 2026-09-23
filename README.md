@@ -25,9 +25,10 @@ Cenário 1: Sucesso — 200 OK
 
 ## Cenários de falha
 
-Cenário	Condição	Status	Mensagem
-Formato inválido	CEP sem 8 dígitos ou com caracteres inválidos	422	invalid zipcode
-CEP não encontrado	CEP com formato correto, mas inexistente na base de dados	404	can not find zipcode
+|Cenário	Condição|	Status|	Mensagem|
+|-----------------|-------|---------|
+|Formato inválido	CEP sem 8 dígitos ou com caracteres inválidos|	422|	invalid zipcode|
+|CEP não encontrado	CEP com formato correto, mas inexistente na base de dados|	404	|can not find zipcode|
 
 ## Fórmulas de conversão
 Celsius para Fahrenheit: F = C × 1.8 + 32
