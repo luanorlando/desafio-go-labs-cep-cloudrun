@@ -36,8 +36,10 @@ Celsius para Kelvin: K = C + 273
 Dicas de APIs externas
 
 Você pode utilizar as seguintes APIs (ou similares) para obter os dados:
-*Localização:* ViaCEP
-*Temperatura:* WeatherAPI
+
+*Localização:* [ViaCEP](https://viacep.com.br/)
+
+*Temperatura:* [WeatherAPI](https://www.weatherapi.com/)
 
 # Requisitos de infraestrutura e deploy
 
