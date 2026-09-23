@@ -6,17 +6,17 @@ type CEPRepository interface {
 	Fetch(cep string) (*entity.Cep, error)
 }
 
-type FetchCEPUsecase struct {
+type FetchWeatherUsecase struct {
 	repository CEPRepository
 }
 
-func NewFetchCEPUsecase(r CEPRepository) *FetchCEPUsecase {
-	return &FetchCEPUsecase{
+func NewFetchWeatherUsecase(r CEPRepository) *FetchWeatherUsecase {
+	return &FetchWeatherUsecase{
 		repository: r,
 	}
 }
 
-func (u FetchCEPUsecase) Execute(cep string) (*entity.Cep, error) {
+func (u FetchWeatherUsecase) Execute(cep string) (*entity.Cep, error) {
 	if !entity.ValidarCEP(cep) {
 		return nil, entity.ErrCEPInvalid
 	}

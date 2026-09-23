@@ -11,10 +11,10 @@ import (
 
 func main() {
 	cepRepo := repository.NewViaCEPRepository()
-	fetchCEPUsecase := usecase.NewFetchCEPUsecase(cepRepo)
+	fetchCEPUsecase := usecase.NewFetchWeatherUsecase(cepRepo)
 	cepHandler := handler.NewHandler(fetchCEPUsecase)
 
-	http.Handle("GET /cep/{cep}", cepHandler)
+	http.Handle("GET /weather/{cep}", cepHandler)
 
 	log.Println("Servidor rodando na porta :8080...")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
