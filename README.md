@@ -5,6 +5,26 @@ Sistema em Go com deploy no Cloud Run — Go Expert
 
 Desenvolver um sistema em Go que receba um CEP, identifique a cidade correspondente e retorne o clima atual (temperatura em graus Celsius, Fahrenheit e Kelvin). O requisito final é que este sistema esteja publicado e acessível no Google Cloud Run.
 
+# Setup
+
+No Projeto tem um arquivo chamado `.env.example`, será necessário criar um arquivo `.env` e adicionar a apiKey gerada ao se cadastrar em [WeatherAPI](https://www.weatherapi.com/)
+
+### Rodar os testes localmente via Docker
+
+#### 1. Faz o build focado apenas no estágio dos testes
+```shell
+docker build --target builder -t desafio-testes .
+```
+#### 2. Executa o contêiner dos testes (ele rodará o 'go test ./... -v')
+```shell
+docker run --rm desafio-testes
+```
+
+### Rodar a Aplicação Localmente no Docker 
+```shell
+docker-compose up --build
+```
+
 # Requisitos funcionais
 
 Entrada: O sistema deve receber um CEP válido de 8 dígitos.
@@ -43,22 +63,23 @@ Você pode utilizar as seguintes APIs (ou similares) para obter os dados:
 
 # Requisitos de infraestrutura e deploy
 
-- [ ] Docker: O projeto deve possuir um Dockerfile para containerização.
+- [x] Docker: O projeto deve possuir um Dockerfile para containerização.
 - [ ] Cloud Run: A aplicação deve ser implantada no Google Cloud Run (pode utilizar o free tier).
-- [ ] Testes: Devem ser implementados testes automatizados que comprovem o funcionamento das conversões e das requisições.
+- [x] Testes: Devem ser implementados testes automatizados que comprovem o funcionamento das conversões e das requisições.
 
 # Entregável
 
-- [ ] Código fonte: Link do repositório no GitHub.
+- [x] Código fonte: Link do repositório no GitHub.
 - [ ] URL de acesso: O endereço ativo da aplicação no Google Cloud Run (deve constar no README).
-- [ ] Testes: O projeto deve conter testes automatizados.
+- [x] Testes: O projeto deve conter testes automatizados.
 
 # Regras de entrega
 
-- [ ] Repositório exclusivo: O repositório deve conter apenas o projeto em questão.
-- [ ] Branch principal: Todo o código deve estar na branch main.
+- [x] Repositório exclusivo: O repositório deve conter apenas o projeto em questão.
+- [x] Branch principal: Todo o código deve estar na branch main.
 
 # README: O arquivo deve conter:
 
-A URL do sistema rodando no Cloud Run.
-Instruções de como rodar os testes e a aplicação localmente via Docker.
+- [ ] A URL do sistema rodando no Cloud Run.
+- [x] Instruções de como rodar os testes e a aplicação localmente via Docker. 
+
