@@ -63,7 +63,7 @@ Você pode utilizar as seguintes APIs (ou similares) para obter os dados:
 
 # Requisitos de infraestrutura e deploy
 
-- [ ] Docker: O projeto deve possuir um Dockerfile para containerização.
+- [x] Docker: O projeto deve possuir um Dockerfile para containerização.
 - [ ] Cloud Run: A aplicação deve ser implantada no Google Cloud Run (pode utilizar o free tier).
 - [x] Testes: Devem ser implementados testes automatizados que comprovem o funcionamento das conversões e das requisições.
 
@@ -80,5 +80,6 @@ Você pode utilizar as seguintes APIs (ou similares) para obter os dados:
 
 # README: O arquivo deve conter:
 
-A URL do sistema rodando no Cloud Run.
-Instruções de como rodar os testes e a aplicação localmente via Docker.
+- [ ] A URL do sistema rodando no Cloud Run.
+- [x] Instruções de como rodar os testes e a aplicação localmente via Docker. 
+
