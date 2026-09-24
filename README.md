@@ -21,14 +21,8 @@ docker run --rm desafio-testes
 ```
 
 ### Rodar a Aplicação Localmente no Docker 
-
-#### 1. Faz o build da imagem completa (vai gerar o executável final leve)
 ```shell
-docker build -t desafio-app .
-```
-#### 2. Roda a aplicação injetando o seu arquivo .env local para dentro do contêiner
-```shell
-docker run --rm -p 8080:8080 --env-file .env desafio-app
+docker-compose up --build
 ```
 
 # Requisitos funcionais
