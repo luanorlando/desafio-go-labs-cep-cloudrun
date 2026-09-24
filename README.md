@@ -7,7 +7,7 @@ Desenvolver um sistema em Go que receba um CEP, identifique a cidade corresponde
 
 # Setup
 
-No Projeto tem m arquivo .env.example, será necessário criar um arquivo .env e adicionar a apiKey gerada ao se cadastrar em [WeatherAPI](https://www.weatherapi.com/)
+No Projeto tem um arquivo chamado `.env.example`, será necessário criar um arquivo `.env` e adicionar a apiKey gerada ao se cadastrar em [WeatherAPI](https://www.weatherapi.com/)
 
 ### Rodar os testes localmente via Docker
 
