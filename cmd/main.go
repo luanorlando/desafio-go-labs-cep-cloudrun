@@ -12,7 +12,21 @@ import (
 )
 
 func main() {
-	config, _ := config.LoadConfig(".")
+	config, err := config.LoadConfig(".")
+
+	if err != nil {
+		log.Fatalf("Erro ao carregar configurações: %v", err)
+	}
+
+	// PROTEÇÃO ANTI-PANIC: Garante que a struct existe na memória
+	if config == nil {
+		log.Fatal("Erro fatal: A estrutura de configuração retornou nula (nil)")
+	}
+
+	// Agora a linha 20 está segura contra Nil Pointer
+	if config.WeatherAPIKey == "" {
+		log.Fatal("A variável WEATHER_API_KEY é obrigatória")
+	}
 
 	client := http.Client{}
 
@@ -24,7 +38,7 @@ func main() {
 	http.Handle("GET /weather/{cep}", cepHandler)
 
 	httpPort := fmt.Sprintf(":%s", config.HTTPPort)
-	log.Println("Servidor rodando na porta %s", httpPort)
+	log.Printf("Servidor iniciando na porta %s...", httpPort)
 	if err := http.ListenAndServe(httpPort, nil); err != nil {
 		log.Fatalf("Erro ao iniciar o servidor: %v", err)
 	}

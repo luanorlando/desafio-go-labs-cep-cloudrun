@@ -1,6 +1,8 @@
 package config
 
 import (
+	"log"
+
 	"github.com/spf13/viper"
 )
 
@@ -14,16 +16,16 @@ func LoadConfig(path string) (*Conf, error) {
 
 	viper.SetConfigFile(path + "/.env")
 	viper.SetConfigType("env")
-	viper.AddConfigPath(path)
 
 	viper.AutomaticEnv()
+	_ = viper.BindEnv("weather_api_key", "WEATHER_API_KEY")
+	_ = viper.BindEnv("http_port", "HTTP_PORT")
 
 	if err := viper.ReadInConfig(); err != nil {
-		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
-			return nil, err
-		}
+		log.Println("Aviso: Arquivo .env não encontrado. Buscando variáveis da memória...")
 	}
 
+	// O Viper joga as variáveis da memória (injetadas pelo Docker) para dentro da sua struct
 	err := viper.Unmarshal(&cfg)
 	if err != nil {
 		return nil, err
