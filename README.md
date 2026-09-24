@@ -45,18 +45,18 @@ Você pode utilizar as seguintes APIs (ou similares) para obter os dados:
 
 - [ ] Docker: O projeto deve possuir um Dockerfile para containerização.
 - [ ] Cloud Run: A aplicação deve ser implantada no Google Cloud Run (pode utilizar o free tier).
-- [ ] Testes: Devem ser implementados testes automatizados que comprovem o funcionamento das conversões e das requisições.
+- [x] Testes: Devem ser implementados testes automatizados que comprovem o funcionamento das conversões e das requisições.
 
 # Entregável
 
-- [ ] Código fonte: Link do repositório no GitHub.
+- [x] Código fonte: Link do repositório no GitHub.
 - [ ] URL de acesso: O endereço ativo da aplicação no Google Cloud Run (deve constar no README).
-- [ ] Testes: O projeto deve conter testes automatizados.
+- [x] Testes: O projeto deve conter testes automatizados.
 
 # Regras de entrega
 
-- [ ] Repositório exclusivo: O repositório deve conter apenas o projeto em questão.
-- [ ] Branch principal: Todo o código deve estar na branch main.
+- [x] Repositório exclusivo: O repositório deve conter apenas o projeto em questão.
+- [x] Branch principal: Todo o código deve estar na branch main.
 
 # README: O arquivo deve conter:
 
