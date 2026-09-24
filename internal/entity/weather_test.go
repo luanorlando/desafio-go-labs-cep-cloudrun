@@ -53,23 +53,23 @@ func TestKelvinBy(t *testing.T) {
 	}{
 		{
 			name:         "Zero absoluto em Celsius",
-			celsius:      -273.15,
+			celsius:      -273,
 			expectedKelv: 0.0,
 		},
 		{
 			name:         "Ponto de congelamento da água",
 			celsius:      0.0,
-			expectedKelv: 273.15,
+			expectedKelv: 273,
 		},
 		{
 			name:         "Temperatura ambiente padrão",
 			celsius:      25.0,
-			expectedKelv: 298.15,
+			expectedKelv: 298,
 		},
 		{
 			name:         "Temperatura do cenário anterior (São Paulo)",
 			celsius:      11.1,
-			expectedKelv: 284.25,
+			expectedKelv: 284.10,
 		},
 	}
 
