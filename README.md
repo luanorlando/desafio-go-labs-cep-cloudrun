@@ -5,24 +5,28 @@ Sistema em Go com deploy no Cloud Run — Go Expert
 
 Desenvolver um sistema em Go que receba um CEP, identifique a cidade correspondente e retorne o clima atual (temperatura em graus Celsius, Fahrenheit e Kelvin). O requisito final é que este sistema esteja publicado e acessível no Google Cloud Run.
 
-# Rodar os testes localmente via Docker
+# Setup
 
-### 1. Faz o build focado apenas no estágio dos testes
+No Projeto tem m arquivo .env.example, será necessário criar um arquivo .env e adicionar a apiKey gerada ao se cadastrar em [WeatherAPI](https://www.weatherapi.com/)
+
+### Rodar os testes localmente via Docker
+
+#### 1. Faz o build focado apenas no estágio dos testes
 ```shell
 docker build --target builder -t desafio-testes .
 ```
-### 2. Executa o contêiner dos testes (ele rodará o 'go test ./... -v')
+#### 2. Executa o contêiner dos testes (ele rodará o 'go test ./... -v')
 ```shell
 docker run --rm desafio-testes
 ```
 
-# Rodar a Aplicação Localmente no Docker 
+### Rodar a Aplicação Localmente no Docker 
 
-### 1. Faz o build da imagem completa (vai gerar o executável final leve)
+#### 1. Faz o build da imagem completa (vai gerar o executável final leve)
 ```shell
 docker build -t desafio-app .
 ```
-### 2. Roda a aplicação injetando o seu arquivo .env local para dentro do contêiner
+#### 2. Roda a aplicação injetando o seu arquivo .env local para dentro do contêiner
 ```shell
 docker run --rm -p 8080:8080 --env-file .env desafio-app
 ```
