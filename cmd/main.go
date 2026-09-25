@@ -21,8 +21,13 @@ func main() {
 
 	client := http.Client{}
 
+	apiKey := os.Getenv("WEATHER_API_KEY")
+	if apiKey == "" {
+		apiKey = config.WeatherAPIKey
+	}
+
 	cepRepo := repository.NewViaCEPRepository(&client)
-	weatherRepo := repository.NewExternalWeatherRepository(config.WeatherAPIKey, &client)
+	weatherRepo := repository.NewExternalWeatherRepository(apiKey, &client)
 	usecase := usecase.NewFetchWeatherUsecase(cepRepo, weatherRepo)
 	cepHandler := handler.NewHandler(usecase)
 
