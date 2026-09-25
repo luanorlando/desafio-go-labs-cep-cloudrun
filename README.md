@@ -7,14 +7,11 @@ Desenvolver um sistema em Go que receba um CEP, identifique a cidade corresponde
 
 # Serviço disponível para consumo 
 
-Use a url: https://desafio-go-labs-cep-cloudrun-1073268175161.us-central1.run.app/weather/{CEP} 
+Use a url: https://desafio-go-labs-cep-cloudrun-1073268175161.southamerica-east1.run.app/weather/{CEP} 
 
 Ex: 
-https://desafio-go-labs-cep-cloudrun-1073268175161.us-central1.run.app/weather/01001-000
-
-ou
-
-https://desafio-go-labs-cep-cloudrun-1073268175161.us-central1.run.app/weather/01001000
+https://desafio-go-labs-cep-cloudrun-1073268175161.southamerica-east1.run.app/weather/01001-000
+https://desafio-go-labs-cep-cloudrun-1073268175161.southamerica-east1.run.app/weather/01001000
 
 # Setup para rodar local
 
