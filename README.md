@@ -5,7 +5,13 @@ Sistema em Go com deploy no Cloud Run — Go Expert
 
 Desenvolver um sistema em Go que receba um CEP, identifique a cidade correspondente e retorne o clima atual (temperatura em graus Celsius, Fahrenheit e Kelvin). O requisito final é que este sistema esteja publicado e acessível no Google Cloud Run.
 
-# Setup
+# Serviço disponível para consumo 
+
+Use a url: https://desafio-go-labs-cep-cloudrun-1073268175161.us-central1.run.app/weather/{CEP} 
+
+Ex: https://desafio-go-labs-cep-cloudrun-1073268175161.us-central1.run.app/weather/01001-000
+
+# Setup para rodar local
 
 No Projeto tem um arquivo chamado `.env.example`, será necessário criar um arquivo `.env` e adicionar a apiKey gerada ao se cadastrar em [WeatherAPI](https://www.weatherapi.com/)
 
@@ -64,13 +70,13 @@ Você pode utilizar as seguintes APIs (ou similares) para obter os dados:
 # Requisitos de infraestrutura e deploy
 
 - [x] Docker: O projeto deve possuir um Dockerfile para containerização.
-- [ ] Cloud Run: A aplicação deve ser implantada no Google Cloud Run (pode utilizar o free tier).
+- [x] Cloud Run: A aplicação deve ser implantada no Google Cloud Run (pode utilizar o free tier).
 - [x] Testes: Devem ser implementados testes automatizados que comprovem o funcionamento das conversões e das requisições.
 
 # Entregável
 
 - [x] Código fonte: Link do repositório no GitHub.
-- [ ] URL de acesso: O endereço ativo da aplicação no Google Cloud Run (deve constar no README).
+- [x] URL de acesso: O endereço ativo da aplicação no Google Cloud Run (deve constar no README).
 - [x] Testes: O projeto deve conter testes automatizados.
 
 # Regras de entrega
@@ -80,6 +86,6 @@ Você pode utilizar as seguintes APIs (ou similares) para obter os dados:
 
 # README: O arquivo deve conter:
 
-- [ ] A URL do sistema rodando no Cloud Run.
+- [x] A URL do sistema rodando no Cloud Run.
 - [x] Instruções de como rodar os testes e a aplicação localmente via Docker. 
 
