@@ -28,7 +28,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /app/cloudrun ./cmd/main.g
 # Estágio 3: Imagem final de Execução (Produção com Scratch)
 # --------------------------------------------------------
 # Mantemos sem o "AS runner" já que o docker-compose não pede mais essa etapa por nome
-FROM scratch
+FROM --platform=linux/amd64 scratch
 
 # Copia os certificados necessários para conexões HTTPS externas
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
