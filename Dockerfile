@@ -5,42 +5,40 @@ FROM golang:1.25.2-alpine AS builder
 
 WORKDIR /app
 
-# Instala ferramentas básicas necessárias
 RUN apk add --no-cache git gcc musl-dev
 
-# Copia os arquivos de dependências primeiro (otimiza o cache do Docker)
 COPY go.mod go.sum ./
 RUN go mod download
 
-# Copia o restante do código fonte do projeto
 COPY . .
 
-# Comando padrão deste estágio será rodar os testes
 CMD ["go", "test", "./...", "-v"]
 
 
 # --------------------------------------------------------
-# Estágio 2: Compilação do Executável (Novo Estágio)
+# Estágio 2: Compilação do Executável
 # --------------------------------------------------------
 FROM builder AS compiler
 
-# Compila o binário de forma estática a partir da pasta cmd/main.go
-RUN CGO_ENABLED=0 GOOS=linux go build -o /app/main ./cmd/main.go
+# Compila o binário de forma estática para /app/cloudrun
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /app/cloudrun ./cmd/main.go
 
 
 # --------------------------------------------------------
-# Estágio 3: Imagem final de Execução (Produção/Local)
+# Estágio 3: Imagem final de Execução (Produção com Scratch)
 # --------------------------------------------------------
-FROM alpine:latest AS runner
+# Mantemos sem o "AS runner" já que o docker-compose não pede mais essa etapa por nome
+FROM scratch
 
-RUN apk --no-cache add ca-certificates
+# Copia os certificados necessários para conexões HTTPS externas
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
-WORKDIR /root/
+WORKDIR /app
 
-# Copia o binário real gerado no estágio anterior para a raiz do WORKDIR
-COPY --from=compiler /app/main .
+# Copia o binário exatamente de onde foi gerado no estágio anterior
+COPY --from=compiler /app/cloudrun .
 
 EXPOSE 8080
 
-# Inicia o servidor que manterá o contêiner de pé
-CMD ["./main"]
+# Inicia o servidor usando o binário correto
+ENTRYPOINT ["./cloudrun"]
