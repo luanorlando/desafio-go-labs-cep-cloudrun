@@ -11,7 +11,9 @@ Use a url: https://desafio-go-labs-cep-cloudrun-1073268175161.us-central1.run.ap
 
 Ex: 
 https://desafio-go-labs-cep-cloudrun-1073268175161.us-central1.run.app/weather/01001-000
+
 ou
+
 https://desafio-go-labs-cep-cloudrun-1073268175161.us-central1.run.app/weather/01001000
 
 # Setup para rodar local
