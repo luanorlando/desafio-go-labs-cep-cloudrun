@@ -31,7 +31,7 @@ func (h *WeatherHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if errors.Is(err, entity.ErrCEPNotFound) {
-			http.Error(w, err.Error(), http.StatusNotFound) // <-- CORRIGIDO PARA 404
+			http.Error(w, err.Error(), http.StatusNotFound)
 			return
 		}
 
